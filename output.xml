@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-02-01T20:37:34.371169" rpa="false" schemaversion="5">
+<suite id="s1" name="test case API 2" source="C:\Users\nkokovin\PycharmProjects\robot_framework_tester\Project_robotframework_1\API_Tests\test_case_API_2.robot">
+<test id="s1-t1" name="Quick Post Request Test" line="9">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-02-01T20:37:34.825202" level="INFO">Creating Session using : alias=session1, url=http://users.bugred.ru/tasks/rest/doregister, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>session1</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-02-01T20:37:34.825202" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-02-01T20:37:34.826316" level="INFO">${body} = {'email': 'Nick8@mail.ru', 'name': 'Nick8', 'password': 'Nick8'}</msg>
+<var>${body}</var>
+<arg>email=Nick8@mail.ru</arg>
+<arg>name=Nick8</arg>
+<arg>password=Nick8</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-02-01T20:37:34.826316" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-02-01T20:37:34.827348" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-02-01T20:37:34.827348" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-02-01T20:37:35.298679" level="INFO">POST Request : url=http://users.bugred.ru/tasks/rest/doregister/tasks/rest/doregister 
+ path_url=/tasks/rest/doregister/tasks/rest/doregister 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '47'} 
+ body=email=Nick8%40mail.ru&amp;name=Nick8&amp;password=Nick8 
+ </msg>
+<msg time="2024-02-01T20:37:35.299677" level="INFO">POST Response : url=http://users.bugred.ru/tasks/rest/doregister/tasks/rest/doregister 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.10.0', 'Date': 'Thu, 01 Feb 2024 17:37:35 GMT', 'Content-Type': 'application/json', 'Connection': 'keep-alive', 'X-Powered-By': 'PHP/5.6.14', 'Expires': 'Thu, 19 Nov 1981 08:52:00 GMT', 'Cache-Control': 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'Pragma': 'no-cache', 'Set-Cookie': 'PHPSESSID=36f5fa11ae19451080bca6c4e436f126; path=/; HttpOnly', 'Transfer-Encoding': 'chunked'} 
+ body={"type":"error","message":"\u041c\u0435\u0442\u043e\u0434 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442.\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043c\u0435\u0442\u043e\u0434\u044b \u0434\u043b\u044f \u0432\u044b\u0437\u043e\u0432\u0430 deletetask,addtaskincron,updatetask,createtask,deleteuser,updateUseronefield,fullupdateuser,dologin,getuser,doregister"} 
+ </msg>
+<msg time="2024-02-01T20:37:35.299677" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>session1</arg>
+<arg>${endpoint}</arg>
+<arg>data=${body}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-02-01T20:37:34.827348" elapsed="0.472329"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-02-01T20:37:35.300753" elapsed="0.002053"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-02-01T20:37:35.303945" elapsed="0.002196"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-02-01T20:37:35.308218" level="INFO">${status_code} = 200</msg>
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-02-01T20:37:35.307139" elapsed="0.001079"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-02-01T20:37:35.308218" elapsed="0.001152"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-02-01T20:37:35.310484" level="INFO">${res_body} = {"type":"error","message":"\u041c\u0435\u0442\u043e\u0434 \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442.\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043c\u0435\...</msg>
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-02-01T20:37:35.309370" elapsed="0.001114"/>
+</kw>
+<status status="PASS" start="2024-02-01T20:37:34.824146" elapsed="0.488728"/>
+</test>
+<status status="PASS" start="2024-02-01T20:37:34.374657" elapsed="0.941511"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="test case API 2">test case API 2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
